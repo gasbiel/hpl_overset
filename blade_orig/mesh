@@ -1,0 +1,9 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+cartesianMesh > log.cartesianMesh 2>&1
+createPatch -overwrite > log.createPatch 2>&1
+checkMesh > log.checkMesh 2>&1
+topoSet > log.topoSet 2>&1
+
+#------------------------------------------------------------------------------
