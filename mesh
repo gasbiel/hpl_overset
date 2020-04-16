@@ -2,8 +2,8 @@
 cd ${0%/*} || exit 1    # Run from this directory
 
 #Copying reference cases
-cp -r domain_orig static_domain
-cp -r blade_orig blade1
+cp -r stator_orig static_domain
+cp -r rotor_orig blade1
 
 #Meshing static domain
 cd static_domain

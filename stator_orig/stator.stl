@@ -1,0 +1,96 @@
+solid stator_inlet
+  facet normal -1.000000 -0.000000 -0.000000
+    outer loop
+      vertex -350.000000 175.000000 175.000000
+      vertex -350.000000 175.000000 -175.000000
+      vertex -350.000000 -175.000000 175.000000
+    endloop
+  endfacet
+  facet normal -1.000000 0.000000 0.000000
+    outer loop
+      vertex -350.000000 175.000000 -175.000000
+      vertex -350.000000 -175.000000 -175.000000
+      vertex -350.000000 -175.000000 175.000000
+    endloop
+  endfacet
+endsolid stator_inlet
+solid stator_outlet
+  facet normal 1.000000 -0.000000 0.000000
+    outer loop
+      vertex 700.000000 -175.000000 175.000000
+      vertex 700.000000 175.000000 -175.000000
+      vertex 700.000000 175.000000 175.000000
+    endloop
+  endfacet
+  facet normal 1.000000 0.000000 0.000000
+    outer loop
+      vertex 700.000000 -175.000000 175.000000
+      vertex 700.000000 -175.000000 -175.000000
+      vertex 700.000000 175.000000 -175.000000
+    endloop
+  endfacet
+endsolid stator_outlet
+solid stator_side1
+  facet normal 0.000000 1.000000 0.000000
+    outer loop
+      vertex 700.000000 175.000000 -175.000000
+      vertex -350.000000 175.000000 -175.000000
+      vertex -350.000000 175.000000 175.000000
+    endloop
+  endfacet
+  facet normal 0.000000 1.000000 0.000000
+    outer loop
+      vertex 700.000000 175.000000 175.000000
+      vertex 700.000000 175.000000 -175.000000
+      vertex -350.000000 175.000000 175.000000
+    endloop
+  endfacet
+endsolid stator_side1
+solid stator_side2
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex -350.000000 -175.000000 175.000000
+      vertex -350.000000 -175.000000 -175.000000
+      vertex 700.000000 -175.000000 -175.000000
+    endloop
+  endfacet
+  facet normal 0.000000 -1.000000 0.000000
+    outer loop
+      vertex -350.000000 -175.000000 175.000000
+      vertex 700.000000 -175.000000 -175.000000
+      vertex 700.000000 -175.000000 175.000000
+    endloop
+  endfacet
+endsolid stator_side2
+solid stator_side3
+  facet normal 0.000000 0.000000 1.000000
+    outer loop
+      vertex 700.000000 -175.000000 175.000000
+      vertex -350.000000 175.000000 175.000000
+      vertex -350.000000 -175.000000 175.000000
+    endloop
+  endfacet
+  facet normal 0.000000 0.000000 1.000000
+    outer loop
+      vertex 700.000000 175.000000 175.000000
+      vertex -350.000000 175.000000 175.000000
+      vertex 700.000000 -175.000000 175.000000
+    endloop
+  endfacet
+endsolid stator_side3
+solid stator_side4
+  facet normal 0.000000 0.000000 -1.000000
+    outer loop
+      vertex -350.000000 -175.000000 -175.000000
+      vertex -350.000000 175.000000 -175.000000
+      vertex 700.000000 -175.000000 -175.000000
+    endloop
+  endfacet
+  facet normal 0.000000 0.000000 -1.000000
+    outer loop
+      vertex 700.000000 -175.000000 -175.000000
+      vertex -350.000000 175.000000 -175.000000
+      vertex 700.000000 175.000000 -175.000000
+    endloop
+  endfacet
+endsolid stator_side4

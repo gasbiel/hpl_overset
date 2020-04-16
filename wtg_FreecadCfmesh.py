@@ -103,16 +103,30 @@ TERefinement=Part.Compound(TESurfacesRef)
 Part.show(TERefinement)
 
 print("Creating rotating domain")
-domainUp=10.*span
-domainDown=20*span	#40.*span
-domainHeight=10*span	#20.*span
+rotorLengthX = 15
+rotorLengthY = 15
+rotorLengthZ = 40
 
-#cylinder=Part.makeCylinder(domainHeight/10,domainUp/10+domainDown/10,Base.Vector(-domainUp/10,0,0),Base.Vector(1,0,0),80)
-cylinder=Part.makeCylinder(2*span,2*span,Base.Vector(-span,0,0),Base.Vector(1,0,0),80)
-cylinder.rotate(Base.Vector(0,0,0),Base.Vector(1,0,0),-40)
+rotor = Part.makeBox(rotorLengthX,rotorLengthY,rotorLengthZ)
+#rotor = doc.addObject("Part::Box","rotor")
+#rotor.Length = rotorLengthX
+#rotor.Width = rotorLengthY
+#rotor.Height = rotorLengthZ
+#rotor.Placement.Base = FreeCAD.Vector(-rotorLengthX/2,-rotorLengthY/2,0)
+rotor.translate(Base.Vector(-rotorLengthX/2,-rotorLengthY/2,0))
 
 print("Creating static domain")
-static_cylinder=Part.makeCylinder(domainHeight,domainUp+domainDown,Base.Vector(-domainUp,0,0),Base.Vector(1,0,0),360)
+statorLengthX = 30*span
+statorLengthY = 10*span
+statorLengthZ = 10*span
+
+stator = Part.makeBox(statorLengthX,statorLengthY,statorLengthZ)
+#stator = doc.addObject("Part::Box","stator")
+#stator.Length = statorLengthX
+#stator.Width = statorLengthY
+#stator.Height = statorLengthZ
+#stator.Placement.Base = FreeCAD.Vector(-10*span,-statorLengthY/2,-statorLengthZ/2)
+stator.translate(Base.Vector(-10*span,-statorLengthY/2,-statorLengthZ/2))
 
 print("Creating blade")
 ### Use this if the blade cuts the cyclic : can create issues
@@ -125,42 +139,66 @@ Part.show(wing)
 
 wingSolid=Part.makeSolid(Part.makeShell(intrados.Faces+extrados.Faces+TE.Faces+tip.Faces+root.Faces))
 
-print("Cutting domain")
-idx=[x.CenterOfMass[1] for x in cylinder.Faces].index(min([x.CenterOfMass[1] for x in cylinder.Faces]))
-cyclic1=cylinder.Faces[idx]
-cyclic1Cut=cyclic1.cut(wingSolid)
-Part.show(cyclic1Cut)
+#print("Cutting domain")
+#idx=[x.CenterOfMass[1] for x in cylinder.Faces].index(min([x.CenterOfMass[1] for x in cylinder.Faces]))
+#cyclic1=cylinder.Faces[idx]
+#cyclic1Cut=cyclic1.cut(wingSolid)
+#Part.show(cyclic1Cut)
 
-idx=[x.CenterOfMass[1] for x in cylinder.Faces].index(max([x.CenterOfMass[1] for x in cylinder.Faces]))
-cyclic2=cylinder.Faces[idx]
-cyclic2Cut=cyclic2.cut(wingSolid)
-Part.show(cyclic2Cut)
+#idx=[x.CenterOfMass[1] for x in cylinder.Faces].index(max([x.CenterOfMass[1] for x in cylinder.Faces]))
+#cyclic2=cylinder.Faces[idx]
+#cyclic2Cut=cyclic2.cut(wingSolid)
+#Part.show(cyclic2Cut)
 
 print("Ordering rotating domain faces")
-idx=[x.CenterOfMass[0] for x in cylinder.Faces].index(min([x.CenterOfMass[0] for x in cylinder.Faces]))
-inlet=cylinder.Faces[idx]
-Part.show(inlet)
+idx=[x.CenterOfMass[0] for x in rotor.Faces].index(min([x.CenterOfMass[0] for x in rotor.Faces]))
+rotor_inlet=rotor.Faces[idx]
+Part.show(rotor_inlet)
 
-idx=[x.CenterOfMass[0] for x in cylinder.Faces].index(max([x.CenterOfMass[0] for x in cylinder.Faces]))
-outlet=cylinder.Faces[idx]
-Part.show(outlet)
+idx=[x.CenterOfMass[0] for x in rotor.Faces].index(max([x.CenterOfMass[0] for x in rotor.Faces]))
+rotor_outlet=rotor.Faces[idx]
+Part.show(rotor_outlet)
 
-idx=[x.CenterOfMass[2] for x in cylinder.Faces].index(max([x.CenterOfMass[2] for x in cylinder.Faces]))
-top=cylinder.Faces[idx]
-Part.show(top)
+idx=[x.CenterOfMass[1] for x in rotor.Faces].index(max([x.CenterOfMass[1] for x in rotor.Faces]))
+rotor_side1=rotor.Faces[idx]
+Part.show(rotor_side1)
+
+idx=[x.CenterOfMass[1] for x in rotor.Faces].index(min([x.CenterOfMass[1] for x in rotor.Faces]))
+rotor_side2=rotor.Faces[idx]
+Part.show(rotor_side2)
+
+idx=[x.CenterOfMass[2] for x in rotor.Faces].index(max([x.CenterOfMass[2] for x in rotor.Faces]))
+rotor_side3=rotor.Faces[idx]
+Part.show(rotor_side3)
+
+idx=[x.CenterOfMass[2] for x in rotor.Faces].index(min([x.CenterOfMass[2] for x in rotor.Faces]))
+rotor_side4=rotor.Faces[idx]
+Part.show(rotor_side4)
 
 print("Ordering static domain faces")
-idx=[x.CenterOfMass[0] for x in static_cylinder.Faces].index(min([x.CenterOfMass[0] for x in static_cylinder.Faces]))
-static_inlet=static_cylinder.Faces[idx]
-Part.show(static_inlet)
+idx=[x.CenterOfMass[0] for x in stator.Faces].index(min([x.CenterOfMass[0] for x in stator.Faces]))
+stator_inlet=stator.Faces[idx]
+Part.show(stator_inlet)
 
-idx=[x.CenterOfMass[0] for x in static_cylinder.Faces].index(max([x.CenterOfMass[0] for x in static_cylinder.Faces]))
-static_outlet=static_cylinder.Faces[idx]
-Part.show(static_outlet)
+idx=[x.CenterOfMass[0] for x in stator.Faces].index(max([x.CenterOfMass[0] for x in stator.Faces]))
+stator_outlet=stator.Faces[idx]
+Part.show(stator_outlet)
 
-idx=[x.CenterOfMass[2] for x in static_cylinder.Faces].index(min([abs(x.CenterOfMass[2]) for x in static_cylinder.Faces]))
-static_side=static_cylinder.Faces[idx]
-Part.show(static_side)
+idx=[x.CenterOfMass[1] for x in stator.Faces].index(max([x.CenterOfMass[1] for x in stator.Faces]))
+stator_side1=stator.Faces[idx]
+Part.show(stator_side1)
+
+idx=[x.CenterOfMass[1] for x in stator.Faces].index(min([x.CenterOfMass[1] for x in stator.Faces]))
+stator_side2=stator.Faces[idx]
+Part.show(stator_side2)
+
+idx=[x.CenterOfMass[2] for x in stator.Faces].index(max([x.CenterOfMass[2] for x in stator.Faces]))
+stator_side3=stator.Faces[idx]
+Part.show(stator_side3)
+
+idx=[x.CenterOfMass[2] for x in stator.Faces].index(min([x.CenterOfMass[2] for x in stator.Faces]))
+stator_side4=stator.Faces[idx]
+Part.show(stator_side4)
 
 print("Exporting")
 Mesh.export([doc.getObject("Shape")],u"./LE.stl")
@@ -168,28 +206,40 @@ Mesh.export([doc.getObject("Shape002")],u"./TE.stl")
 
 Mesh.export([doc.getObject("Shape003")],u"./foil.ast")
 Mesh.export([doc.getObject("Shape001")],u"./tip.ast")
-Mesh.export([doc.getObject("Shape004")],u"./cyc1.ast")
-Mesh.export([doc.getObject("Shape005")],u"./cyc2.ast")
-Mesh.export([doc.getObject("Shape006")],u"./inlet.ast")
-Mesh.export([doc.getObject("Shape007")],u"./outlet.ast")
-Mesh.export([doc.getObject("Shape008")],u"./top.ast")
-Mesh.export([doc.getObject("Shape009")],u"./static_inlet.ast")
-Mesh.export([doc.getObject("Shape010")],u"./static_outlet.ast")
-Mesh.export([doc.getObject("Shape011")],u"./static_side.ast")
+Mesh.export([doc.getObject("Shape004")],u"./rotor_inlet.ast")
+Mesh.export([doc.getObject("Shape005")],u"./rotor_outlet.ast")
+Mesh.export([doc.getObject("Shape006")],u"./rotor_side1.ast")
+Mesh.export([doc.getObject("Shape007")],u"./rotor_side2.ast")
+Mesh.export([doc.getObject("Shape008")],u"./rotor_side3.ast")
+Mesh.export([doc.getObject("Shape009")],u"./rotor_side4.ast")
+Mesh.export([doc.getObject("Shape010")],u"./stator_inlet.ast")
+Mesh.export([doc.getObject("Shape011")],u"./stator_outlet.ast")
+Mesh.export([doc.getObject("Shape012")],u"./stator_side1.ast")
+Mesh.export([doc.getObject("Shape013")],u"./stator_side2.ast")
+Mesh.export([doc.getObject("Shape014")],u"./stator_side3.ast")
+Mesh.export([doc.getObject("Shape015")],u"./stator_side4.ast")
 
-os.system('sed -i -e "s#solid Mesh#solid inlet#g" inlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid outlet#g" outlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid cyc1#g" cyc1.ast')
-os.system('sed -i -e "s#solid Mesh#solid cyc2#g" cyc2.ast')
-os.system('sed -i -e "s#solid Mesh#solid top#g" top.ast')
 os.system('sed -i -e "s#solid Mesh#solid foil#g" foil.ast')
 os.system('sed -i -e "s#solid Mesh#solid tip#g" tip.ast')
-os.system('sed -i -e "s#solid Mesh#solid static_inlet#g" static_inlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid static_outlet#g" static_outlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid static_side#g" static_side.ast')
+
+os.system('sed -i -e "s#solid Mesh#solid rotor_inlet#g" rotor_inlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_outlet#g" rotor_outlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side1#g" rotor_side1.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side2#g" rotor_side2.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side3#g" rotor_side3.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side4#g" rotor_side4.ast')
+
+os.system('sed -i -e "s#solid Mesh#solid stator_inlet#g" stator_inlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_outlet#g" stator_outlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side1#g" stator_side1.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side2#g" stator_side2.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side3#g" stator_side3.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side4#g" stator_side4.ast')
 
 
-os.system('cat inlet.ast outlet.ast top.ast cyc1.ast cyc2.ast foil.ast tip.ast > domain.stl')
-os.system('cat static_inlet.ast static_outlet.ast static_side.ast > static_domain.stl')
+
+
+os.system('cat rotor_inlet.ast rotor_outlet.ast rotor_side1.ast rotor_side2.ast rotor_side3.ast rotor_side4.ast foil.ast tip.ast > rotor.stl')
+os.system('cat stator_inlet.ast stator_outlet.ast stator_side1.ast stator_side2.ast stator_side3.ast stator_side4.ast > stator.stl')
 
 exit()

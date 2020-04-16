@@ -49,25 +49,66 @@ pointSync false;
 // Patches to create.
 patches
 (
-	{
+    {
         name overset1;
         patchInfo
         {
             type overset;
         }
         constructFrom patches;
-        patches (inlet outlet top cyc1 cyc2);//blade defined as foil in freecad, extra/intrados in salome
+        patches ();
+    }
+/*
+    {
+        name overset2;
+        patchInfo
+        {
+            type overset;
+        }
+        constructFrom patches;
+        patches ();
     }
 
     {
-        name blade1;
+        name overset3;
+        patchInfo
+        {
+            type overset;
+        }
+        constructFrom patches;
+        patches ();
+    }
+*/
+    {
+        name inlet;
         patchInfo
         {
             type wall;
         }
         constructFrom patches;
-        patches (foil intrados extrados TE hub tip);//blade defined as foil in freecad, extra/intrados in salome
+        patches (stator_inlet);
     }
+
+    {
+        name outlet;
+        patchInfo
+        {
+            type wall;
+        }
+        constructFrom patches;
+        patches (stator_outlet);
+    }
+
+    {
+        name side;
+        patchInfo
+        {
+            type wall;
+        }
+        constructFrom patches;
+        patches (stator_side1 stator_side2 stator_side3 stator_side4);
+    }
+
 );
 
 // ************************************************************************* //

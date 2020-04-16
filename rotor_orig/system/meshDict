@@ -17,9 +17,9 @@ FoamFile
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-surfaceFile "domain.stl";
+surfaceFile "rotor.stl";
 
-maxCellSize 5;
+maxCellSize 2.5;
 //firstLayerThickness	0.004;
 
 /*keepCellsIntersectingBoundary 	0;*/
@@ -78,6 +78,7 @@ lengthY 1.5;
 lengthZ 35.0;
     }
 }
+/*
 anisotropicSources
 {
 //    Plane//  Creates wedge issue
@@ -101,6 +102,7 @@ centre (10 0 20);
     }
 
 }
+*/
 surfaceMeshRefinement
 {
     LE

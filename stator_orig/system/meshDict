@@ -17,7 +17,7 @@ FoamFile
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-surfaceFile "static_domain.stl";
+surfaceFile "stator.stl";
 
 maxCellSize 20;
 
@@ -26,11 +26,11 @@ objectRefinements
 	oversetRefinement
 	{
 		type				cone;
-		additionalRefinementLevels	2;
-		p0				(-40 0 0);
-		p1				(40 0 0);
-		radius0				75;
-		radius1				75;
+		cellSize			2.5;
+		p0				(-10 0 0);
+		p1				(10 0 0);
+		radius0				55;
+		radius1				55;
 	}
 }
 

@@ -33,7 +33,7 @@ stopAt          endTime;
 
 endTime         0.6;
 
-deltaT          2e-4;
+deltaT          2e-2;
 
 writeControl    timeStep;
 
@@ -53,7 +53,7 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-adjustTimeStep  true;
+adjustTimeStep  false;
 
 maxCo          1;
 

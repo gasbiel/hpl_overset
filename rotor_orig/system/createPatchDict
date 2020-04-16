@@ -49,66 +49,25 @@ pointSync false;
 // Patches to create.
 patches
 (
-    {
+	{
         name overset1;
         patchInfo
         {
             type overset;
         }
         constructFrom patches;
-        patches ();
-    }
-/*
-    {
-        name overset2;
-        patchInfo
-        {
-            type overset;
-        }
-        constructFrom patches;
-        patches ();
+        patches (rotor_inlet rotor_outlet rotor_side1 rotor_side2 rotor_side3 rotor_side4);//blade defined as foil in freecad, extra/intrados in salome
     }
 
     {
-        name overset3;
-        patchInfo
-        {
-            type overset;
-        }
-        constructFrom patches;
-        patches ();
-    }
-*/
-    {
-        name inlet;
+        name blade1;
         patchInfo
         {
             type wall;
         }
         constructFrom patches;
-        patches (static_inlet);
+        patches (foil tip);//blade defined as foil in freecad, extra/intrados in salome
     }
-
-    {
-        name outlet;
-        patchInfo
-        {
-            type wall;
-        }
-        constructFrom patches;
-        patches (static_outlet);
-    }
-
-    {
-        name side;
-        patchInfo
-        {
-            type wall;
-        }
-        constructFrom patches;
-        patches (static_side);
-    }
-
 );
 
 // ************************************************************************* //
