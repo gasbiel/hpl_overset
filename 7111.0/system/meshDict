@@ -1,0 +1,113 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                |
+| \      /  F ield         | cfMesh: A library for mesh generation          | 
+|  \    /   O peration     |                                                |
+|   \  /    A nd           | Author: Franjo Juretic                         | 
+|    \/     M anipulation  | E-mail: franjo.juretic@c-fields.com            |
+*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version   2.0;
+    format    ascii;
+    class     dictionary;
+    location  "system";
+    object    meshDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+surfaceFile "domain.stl";
+
+maxCellSize 0.1;
+
+keepCellsIntersectingBoundary 	0;
+checkForGluedMesh	1;
+wakeLevel	2;
+foilLevel	3;
+LELevel	4;
+TELevel	4;
+nVLayers	10;
+tRatio	1.2;
+
+//minCellSize 0.2; // KEEP OFF ! OTHERWISE AUTOMATIC REFINEMENT AT WEDGE BOUNDARIES
+
+boundaryLayers
+{
+
+    patchBoundaryLayers
+    {
+
+        foil
+        {
+             nLayers	$nVLayers;
+             thicknessRatio	$tRatio;
+        }
+    }
+    optimiseLayer 1;
+
+    optimisationParameters
+    {
+        nSmoothNormals 4;
+        maxNumIterations 10;
+        featureSizeFactor 0.4;
+        reCalculateNormals 1;
+        relThicknessTol 0.1;
+    }
+}
+
+localRefinement
+{
+    foil
+    {
+        additionalRefinementLevels        $foilLevel;
+    }
+}
+
+surfaceMeshRefinement
+{
+
+    wake
+    {
+        surfaceFile        "wake.stl";
+ additionalRefinementLevels        $wakeLevel;
+    }
+    LE
+    {
+        surfaceFile        "LE.stl";
+ additionalRefinementLevels        $LELevel;
+    }
+    TE
+    {
+        surfaceFile        "TE.stl";
+ additionalRefinementLevels        $TELevel;
+    }
+
+}
+
+renameBoundary
+{
+    //defaultName		fixedWalls;
+    defaultType		patch;
+
+    newPatchNames
+    {
+        "(bottomEmptyFaces|topEmptyFaces)"
+        {
+            newName    defaultFaces;
+            type     empty;
+        }
+        foil
+        {
+            newName     foil;
+            type     wall;
+        }
+        "(inlet|outlet|top|bottom)"
+        {
+            newName     oversetPatch;
+            type     overset;
+        }
+    }
+}
+
+// ************************************************************************* //

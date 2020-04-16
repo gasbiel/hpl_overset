@@ -1,0 +1,115 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale 1;
+
+vertices
+(
+    (-20 -20 0)
+    ( 40 -20 0)
+    ( 40  20 0)
+    (-20  20 0)
+    (-20 -20 1)
+    ( 40 -20 1)
+    ( 40  20 1)
+    (-20  20 1)
+//    (-1.2 -2.2 0)
+//    ( 5   -2.2 0)
+//    ( 5    2.2 0)
+//    (-1.2  2.2 0)
+//    (-1.2 -2.2  0.05)
+//    ( 5   -2.2  0.05)
+//    ( 5    2.2  0.05)
+//    (-1.2  2.2  0.05)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (240 160 1) simpleGrading 
+    (
+        (// x-direction expansion ratio
+            (15 0.2 0.25)    // 20% y-dir, 30% cells, expansion = 4
+            (15 0.6 1)    // 60% y-dir, 40% cells, expansion = 1
+            (30 0.2 4) // 20% y-dir, 30% cells, expansion = 0.25 (1/4)
+        )                 
+        (// y-direction expansion ratio
+            (15 0.2 0.25)    // 20% y-dir, 30% cells, expansion = 4
+            (10 0.6 1)    // 60% y-dir, 40% cells, expansion = 1
+            (15 0.2 4) // 20% y-dir, 30% cells, expansion = 0.25 (1/4)
+        )
+        1                  // z-direction expansion ratio
+    )
+//    hex (0 1 2 3 4 5 6 7) (600 400 1) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    topbottom
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+            (1 5 4 0)
+        );
+    }
+
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+
+//    symFront
+//    {
+//        type symmetryPlane;
+//        faces
+//        (
+//            (4 5 6 7)
+//        );
+//    }
+
+//    symBack
+//    {
+//        type symmetryPlane;
+//        faces
+//        (
+//            (0 3 2 1)
+//        );
+//    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

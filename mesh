@@ -7,6 +7,7 @@ cp -r rotor_orig blade1
 
 #Meshing static domain
 cd static_domain
+export OMP_NUM_THREADS=12
 cartesianMesh #> log.cartesianMesh 2>&1
 createPatch -overwrite #> log.createPatch 2>&1
 #checkMesh > log.checkMesh 2>&1
@@ -19,6 +20,7 @@ createPatch -overwrite #> log.createPatch 2>&1
 #checkMesh > log.checkMesh 2>&1
 cd ..
 
+unset OMP_NUM_THREADS
 #Create left blade
 #cp -r blade1 blade2
 #sed -i 's/overset1/overset2/g' blade2/constant/polyMesh/boundary

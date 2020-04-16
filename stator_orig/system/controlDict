@@ -53,9 +53,9 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-adjustTimeStep  false;
+adjustTimeStep  true;
 
-maxCo          1;
+maxCo          60;
 
 functions
 { 
