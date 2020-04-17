@@ -103,9 +103,9 @@ TERefinement=Part.Compound(TESurfacesRef)
 Part.show(TERefinement)
 
 print("Creating rotating domain")
-rotorLengthX = 15
-rotorLengthY = 15
-rotorLengthZ = 40
+rotorLengthX = 25
+rotorLengthY = 25
+rotorLengthZ = 50
 
 rotor = Part.makeBox(rotorLengthX,rotorLengthY,rotorLengthZ)
 #rotor = doc.addObject("Part::Box","rotor")
@@ -113,7 +113,7 @@ rotor = Part.makeBox(rotorLengthX,rotorLengthY,rotorLengthZ)
 #rotor.Width = rotorLengthY
 #rotor.Height = rotorLengthZ
 #rotor.Placement.Base = FreeCAD.Vector(-rotorLengthX/2,-rotorLengthY/2,0)
-rotor.translate(Base.Vector(-rotorLengthX/2,-rotorLengthY/2,0))
+rotor.translate(Base.Vector(-rotorLengthX/2,-rotorLengthY/2,-5))
 
 print("Creating static domain")
 statorLengthX = 30*span

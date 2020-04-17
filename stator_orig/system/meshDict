@@ -27,10 +27,10 @@ objectRefinements
 	{
 		type				cone;
 		cellSize			2.5;
-		p0				(-10 0 0);
-		p1				(10 0 0);
-		radius0				55;
-		radius1				55;
+		p0				(-17.5 0 0);
+		p1				(17.5 0 0);
+		radius0				50;
+		radius1				50;
 	}
 }
 

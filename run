@@ -11,7 +11,7 @@ decomposePar
 
 #mpirun -np 4 moveDynamicMesh -parallel > log.moveDynamicMesh 2>&1
 
-mpirun -np 4 renumberMesh -overwrite -parallel > log.renumberMesh 2>&1
+#mpirun -np 4 renumberMesh -overwrite -parallel > log.renumberMesh 2>&1
 
 mpirun -np 4 overPimpleDyMFoam -parallel > log.solver 2>&1
 

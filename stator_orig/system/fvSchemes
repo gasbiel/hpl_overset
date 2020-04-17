@@ -71,7 +71,7 @@ fluxRequired
 
 oversetInterpolation
 {
-    method          cellVolumeWeight;	//inverseDistance;    //cellVolumeWeight;	//trackingInverseDistance;
+    method          inverseDistance;	//inverseDistance;    //cellVolumeWeight;	//trackingInverseDistance;
 
     // The inverseDistance method uses a 'voxel' like search structure.
     // Optionally specify the extent and number of divisions n.

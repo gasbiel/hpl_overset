@@ -1,96 +1,96 @@
 solid rotor_inlet
-  facet normal -1.000000 0.000000 0.000000
+  facet normal -1.000000 -0.000000 -0.000000
     outer loop
-      vertex -8.000000 7.000000 0.000000
-      vertex -8.000000 -8.000000 0.000000
-      vertex -8.000000 7.000000 40.000000
+      vertex -13.000000 12.000000 45.000000
+      vertex -13.000000 12.000000 -5.000000
+      vertex -13.000000 -13.000000 45.000000
     endloop
   endfacet
-  facet normal -1.000000 -0.000000 0.000000
+  facet normal -1.000000 0.000000 0.000000
     outer loop
-      vertex -8.000000 7.000000 40.000000
-      vertex -8.000000 -8.000000 0.000000
-      vertex -8.000000 -8.000000 40.000000
+      vertex -13.000000 12.000000 -5.000000
+      vertex -13.000000 -13.000000 -5.000000
+      vertex -13.000000 -13.000000 45.000000
     endloop
   endfacet
 endsolid rotor_inlet
 solid rotor_outlet
-  facet normal 1.000000 0.000000 0.000000
-    outer loop
-      vertex 7.000000 7.000000 40.000000
-      vertex 7.000000 -8.000000 0.000000
-      vertex 7.000000 7.000000 0.000000
-    endloop
-  endfacet
   facet normal 1.000000 -0.000000 0.000000
     outer loop
-      vertex 7.000000 -8.000000 40.000000
-      vertex 7.000000 -8.000000 0.000000
-      vertex 7.000000 7.000000 40.000000
+      vertex 12.000000 -13.000000 45.000000
+      vertex 12.000000 12.000000 -5.000000
+      vertex 12.000000 12.000000 45.000000
+    endloop
+  endfacet
+  facet normal 1.000000 0.000000 0.000000
+    outer loop
+      vertex 12.000000 -13.000000 45.000000
+      vertex 12.000000 -13.000000 -5.000000
+      vertex 12.000000 12.000000 -5.000000
     endloop
   endfacet
 endsolid rotor_outlet
 solid rotor_side1
   facet normal 0.000000 1.000000 0.000000
     outer loop
-      vertex -8.000000 7.000000 40.000000
-      vertex 7.000000 7.000000 0.000000
-      vertex -8.000000 7.000000 0.000000
+      vertex 12.000000 12.000000 45.000000
+      vertex 12.000000 12.000000 -5.000000
+      vertex -13.000000 12.000000 -5.000000
     endloop
   endfacet
   facet normal 0.000000 1.000000 0.000000
     outer loop
-      vertex 7.000000 7.000000 40.000000
-      vertex 7.000000 7.000000 0.000000
-      vertex -8.000000 7.000000 40.000000
+      vertex 12.000000 12.000000 45.000000
+      vertex -13.000000 12.000000 -5.000000
+      vertex -13.000000 12.000000 45.000000
     endloop
   endfacet
 endsolid rotor_side1
 solid rotor_side2
   facet normal 0.000000 -1.000000 0.000000
     outer loop
-      vertex -8.000000 -8.000000 0.000000
-      vertex 7.000000 -8.000000 0.000000
-      vertex -8.000000 -8.000000 40.000000
+      vertex -13.000000 -13.000000 -5.000000
+      vertex 12.000000 -13.000000 -5.000000
+      vertex 12.000000 -13.000000 45.000000
     endloop
   endfacet
   facet normal 0.000000 -1.000000 0.000000
     outer loop
-      vertex -8.000000 -8.000000 40.000000
-      vertex 7.000000 -8.000000 0.000000
-      vertex 7.000000 -8.000000 40.000000
+      vertex -13.000000 -13.000000 45.000000
+      vertex -13.000000 -13.000000 -5.000000
+      vertex 12.000000 -13.000000 45.000000
     endloop
   endfacet
 endsolid rotor_side2
 solid rotor_side3
   facet normal 0.000000 0.000000 1.000000
     outer loop
-      vertex 7.000000 7.000000 40.000000
-      vertex -8.000000 7.000000 40.000000
-      vertex -8.000000 -8.000000 40.000000
+      vertex 12.000000 12.000000 45.000000
+      vertex -13.000000 12.000000 45.000000
+      vertex -13.000000 -13.000000 45.000000
     endloop
   endfacet
   facet normal 0.000000 0.000000 1.000000
     outer loop
-      vertex 7.000000 7.000000 40.000000
-      vertex -8.000000 -8.000000 40.000000
-      vertex 7.000000 -8.000000 40.000000
+      vertex 12.000000 12.000000 45.000000
+      vertex -13.000000 -13.000000 45.000000
+      vertex 12.000000 -13.000000 45.000000
     endloop
   endfacet
 endsolid rotor_side3
 solid rotor_side4
   facet normal 0.000000 0.000000 -1.000000
     outer loop
-      vertex -8.000000 -8.000000 0.000000
-      vertex -8.000000 7.000000 0.000000
-      vertex 7.000000 7.000000 0.000000
+      vertex -13.000000 -13.000000 -5.000000
+      vertex -13.000000 12.000000 -5.000000
+      vertex 12.000000 12.000000 -5.000000
     endloop
   endfacet
   facet normal 0.000000 0.000000 -1.000000
     outer loop
-      vertex 7.000000 -8.000000 0.000000
-      vertex -8.000000 -8.000000 0.000000
-      vertex 7.000000 7.000000 0.000000
+      vertex 12.000000 -13.000000 -5.000000
+      vertex -13.000000 -13.000000 -5.000000
+      vertex 12.000000 12.000000 -5.000000
     endloop
   endfacet
 endsolid rotor_side4
