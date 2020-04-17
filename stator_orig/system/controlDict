@@ -55,10 +55,12 @@ runTimeModifiable true;
 
 adjustTimeStep  true;
 
-maxCo          60;
+maxCo          20;
 
 functions
-{ 
+{
+//#includeFunc  grad(U)
+//    #includeFunc  mag(grad(U))
 force
 {
         type                forces;

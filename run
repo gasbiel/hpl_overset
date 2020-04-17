@@ -5,7 +5,7 @@ cd full_domain
 
 #setFields -dict system/setFieldsDict_init > log.setFieldsDict_init 2>&1
 
-decomposePar
+decomposePar -force
 
 #moveDynamicMesh -noFunctionObjects > log.moveDynamicMesh 2>&1
 

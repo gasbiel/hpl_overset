@@ -22,14 +22,7 @@ ddtSchemes
 
 gradSchemes
 {
-    default		Gauss linear;
-    grad(p)        	Gauss linear;
-    grad(U)        	Gauss linear;
-    grad(nuTilda)       Gauss linear;
-    grad(k)        	Gauss linear;
-    grad(omega)        	Gauss linear;
-    grad(epsilon)       Gauss linear;
-    grad(yPsi)      cellLimited Gauss linear 1.0;
+    default		cellMDLimited Gauss linear 0.5;
 }
 
 divSchemes
@@ -71,7 +64,7 @@ fluxRequired
 
 oversetInterpolation
 {
-    method          cellVolumeWeight;	//inverseDistance;    //cellVolumeWeight;	//trackingInverseDistance;
+    method          inverseDistance;    //cellVolumeWeight;	//trackingInverseDistance;
 
     // The inverseDistance method uses a 'voxel' like search structure.
     // Optionally specify the extent and number of divisions n.
