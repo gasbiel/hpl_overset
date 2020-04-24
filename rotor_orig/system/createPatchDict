@@ -60,7 +60,7 @@ patches
     }
 
     {
-        name blade1;
+        name blade3;
         patchInfo
         {
             type wall;

@@ -12,7 +12,7 @@ FoamFile
 
 dimensions [ 0 1 -1 0 0 0 0 ];
 
-internalField uniform (11.5 0 0);
+internalField uniform (6 0 0);
 
 boundaryField
 {
@@ -35,7 +35,7 @@ boundaryField
 	type slip;
   }
 
-  blade1
+  blade3
   {
     //type noSlip;
     type            movingWallVelocity; //From simpleRotor Tutorial
@@ -43,7 +43,7 @@ boundaryField
     value uniform	    (0 0 0);
   }
 /*
-  blade2
+  blade3
   {
     //type noSlip;
     type            movingWallVelocity; //From simpleRotor Tutorial

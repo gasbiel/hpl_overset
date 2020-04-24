@@ -40,13 +40,13 @@ boundaryField
         value           uniform 0;
     }
 
-    blade1
+    blade3
     {
         type            nutkWallFunction;
         value           $internalField;
     }
 /*
-    blade2
+    blade3
     {
         type            nutkWallFunction;
         value           $internalField;

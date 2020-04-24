@@ -19,19 +19,19 @@ FoamFile
 
 surfaceFile "rotor.stl";
 
-maxCellSize 2.5;
+maxCellSize 3;
 //firstLayerThickness	0.004;
 
 /*keepCellsIntersectingBoundary 	0;*/
 /*checkForGluedMesh	1;*/
 wakeLevel 0;
-tipLevel 5;
-foilLevel 5;
+tipLevel 6;
+foilLevel 6;
 LELevel 6;
-TELevel 6;
-nVLayers 0;
+TELevel 7;
+nVLayers 6;
 tRatio 1.2;
-scaling 2.0;
+scaling 1.5;
 //minCellSize 0.2; // KEEP OFF ! OTHERWISE AUTOMATIC REFINEMENT AT WEDGE BOUNDARIES
 boundaryLayers
 {
@@ -78,7 +78,7 @@ lengthY 1.5;
 lengthZ 35.0;
     }
 }
-/*
+
 anisotropicSources
 {
 //    Plane//  Creates wedge issue
@@ -102,7 +102,7 @@ centre (10 0 20);
     }
 
 }
-*/
+
 surfaceMeshRefinement
 {
     LE

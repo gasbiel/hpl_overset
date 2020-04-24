@@ -23,7 +23,7 @@ internalField   uniform 3.5;
 
 boundaryField
 {
-    blade1
+    blade3
     {
 		type	zeroGradient;
 		value	uniform	0;

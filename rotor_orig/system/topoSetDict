@@ -19,7 +19,7 @@ actions
 (
 
 {
-	name blade1Set;
+	name blade3Set;
 	type cellSet;
 	action new;
 	source cylinderToCell;
@@ -32,13 +32,13 @@ actions
 }
 
 {
-	name blade1Zone;
+	name blade3Zone;
 	type cellZoneSet;
 	action new;
 	source setToCellZone;
 	sourceInfo
 	{
-		set blade1Set;
+		set blade3Set;
 	}
 }
 

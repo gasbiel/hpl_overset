@@ -55,12 +55,12 @@ boundaryField
         type            zeroGradient;
     }
 
-    blade1
+    blade3
     {
         type            zeroGradient;
     }
 /*
-    blade2
+    blade3
     {
         type            zeroGradient;
     }

@@ -36,7 +36,7 @@ multiSolidBodyMotionSolverCoeffs
         {
             origin      (0 0 0);
             axis        (1 0 0);
-            omega       10.0;
+            omega       -1.3;
         }
     }
 /*

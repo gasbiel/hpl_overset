@@ -43,13 +43,13 @@ boundaryField
     }
 
 
-    blade1
+    blade3
     {
 		type	zeroGradient;
 		value	uniform	0;
     }
 /*
-    blade2
+    blade3
     {
 		type	zeroGradient;
 		value	uniform	0;

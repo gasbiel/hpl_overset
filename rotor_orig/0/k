@@ -24,7 +24,7 @@ internalField   uniform 1.98;
 boundaryField
 {
 
-    blade1
+    blade3
     {
 		type	kqRWallFunction;
 		value   $internalField;

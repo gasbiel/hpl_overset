@@ -42,13 +42,13 @@ boundaryField
         value           $internalField;
     }
 
-    blade1
+    blade3
     {
 		type	kqRWallFunction;
 		value	uniform	0;
     }
 /*
-    blade2
+    blade3
     {
 		type	kqRWallFunction;
 		value	uniform	0;

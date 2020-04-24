@@ -58,13 +58,13 @@ boundaryField
         uniformValue    (0 0 0);
     }
 
-    blade1
+    blade3
     {
         type            uniformFixedValue;
         uniformValue    (0 0 0);
     }
 /*
-    blade2
+    blade3
     {
         type            uniformFixedValue;
         uniformValue    (0 0 0);

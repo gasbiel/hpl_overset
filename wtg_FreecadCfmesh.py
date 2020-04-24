@@ -201,8 +201,8 @@ stator_side4=stator.Faces[idx]
 Part.show(stator_side4)
 
 print("Exporting")
-Mesh.export([doc.getObject("Shape")],u"./LE.stl")
-Mesh.export([doc.getObject("Shape002")],u"./TE.stl")
+Mesh.export([doc.getObject("Shape")],u"rotor_orig/LE.stl")
+Mesh.export([doc.getObject("Shape002")],u"rotor_orig/TE.stl")
 
 Mesh.export([doc.getObject("Shape003")],u"./foil.ast")
 Mesh.export([doc.getObject("Shape001")],u"./tip.ast")
@@ -239,7 +239,7 @@ os.system('sed -i -e "s#solid Mesh#solid stator_side4#g" stator_side4.ast')
 
 
 
-os.system('cat rotor_inlet.ast rotor_outlet.ast rotor_side1.ast rotor_side2.ast rotor_side3.ast rotor_side4.ast foil.ast tip.ast > rotor.stl')
-os.system('cat stator_inlet.ast stator_outlet.ast stator_side1.ast stator_side2.ast stator_side3.ast stator_side4.ast > stator.stl')
+os.system('cat rotor_inlet.ast rotor_outlet.ast rotor_side1.ast rotor_side2.ast rotor_side3.ast rotor_side4.ast foil.ast tip.ast > rotor_orig/rotor.stl')
+os.system('cat stator_inlet.ast stator_outlet.ast stator_side1.ast stator_side2.ast stator_side3.ast stator_side4.ast > stator_orig/stator.stl')
 
 exit()

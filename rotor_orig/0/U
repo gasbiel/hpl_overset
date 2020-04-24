@@ -19,7 +19,7 @@ boundaryField
 
 
 
-  blade1
+  blade3
   {
     //type noSlip;
     type            movingWallVelocity; //From simpleRotor Tutorial
