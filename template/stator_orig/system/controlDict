@@ -1,0 +1,83 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs            ("liboverset.so" "libfvMotionSolvers.so");
+
+DebugSwitches
+{
+    overset                 0;
+    dynamicOversetFvMesh    0;
+    cellVolumeWeight        0;
+}
+
+application     overPimpleDyMFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.6;
+
+deltaT          1e-3;
+
+writeControl    timeStep;
+
+writeInterval   10;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  10;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  true;
+
+maxCo          20;
+
+
+
+functions
+{ 
+force
+{
+        type                forces;
+        libs  ( "libforces.so" );
+        writeControl       timeStep;
+        writeInterval      1;
+        patches             (blades);
+        pName               p;
+        UName               U;
+        rho             rhoInf;
+        log                 true;
+        rhoInf              1.2041;
+        CofR                (0. 0. 0.);
+}
+}
+
+
+
+
+// ************************************************************************* //

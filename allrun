@@ -1,0 +1,8 @@
+#!/bin/sh
+
+freecad -c wtg_FreecadCfmesh.py
+python3 case_setup.py
+./mesh
+./run
+
+#------------------------------------------------------------------------------

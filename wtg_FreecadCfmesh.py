@@ -5,6 +5,7 @@ import numpy
 from numpy import tan, pi, sin, cos
 import os
 import Mesh
+
 doc=FreeCAD.newDocument()
 
 def profil(chord,shape,axis,side,gap):
@@ -103,9 +104,9 @@ TERefinement=Part.Compound(TESurfacesRef)
 Part.show(TERefinement)
 
 print("Creating rotating domain")
-rotorLengthX = 25
-rotorLengthY = 25
-rotorLengthZ = 50
+rotorLengthX = 4.5
+rotorLengthY = 7.5	#6.5 is limit
+rotorLengthZ = 36
 
 rotor = Part.makeBox(rotorLengthX,rotorLengthY,rotorLengthZ)
 #rotor = doc.addObject("Part::Box","rotor")
@@ -113,7 +114,7 @@ rotor = Part.makeBox(rotorLengthX,rotorLengthY,rotorLengthZ)
 #rotor.Width = rotorLengthY
 #rotor.Height = rotorLengthZ
 #rotor.Placement.Base = FreeCAD.Vector(-rotorLengthX/2,-rotorLengthY/2,0)
-rotor.translate(Base.Vector(-rotorLengthX/2,-rotorLengthY/2,-5))
+rotor.translate(Base.Vector(-rotorLengthX/2,-rotorLengthY/2,1.875))
 
 print("Creating static domain")
 statorLengthX = 30*span
@@ -201,45 +202,41 @@ stator_side4=stator.Faces[idx]
 Part.show(stator_side4)
 
 print("Exporting")
-Mesh.export([doc.getObject("Shape")],u"./LE.stl")
-Mesh.export([doc.getObject("Shape002")],u"./TE.stl")
+os.system('mkdir geom')
+Mesh.export([doc.getObject("Shape")],u"geom/LE.stl")
+Mesh.export([doc.getObject("Shape002")],u"geom/TE.stl")
 
-Mesh.export([doc.getObject("Shape003")],u"./foil.ast")
-Mesh.export([doc.getObject("Shape001")],u"./tip.ast")
-Mesh.export([doc.getObject("Shape004")],u"./rotor_inlet.ast")
-Mesh.export([doc.getObject("Shape005")],u"./rotor_outlet.ast")
-Mesh.export([doc.getObject("Shape006")],u"./rotor_side1.ast")
-Mesh.export([doc.getObject("Shape007")],u"./rotor_side2.ast")
-Mesh.export([doc.getObject("Shape008")],u"./rotor_side3.ast")
-Mesh.export([doc.getObject("Shape009")],u"./rotor_side4.ast")
-Mesh.export([doc.getObject("Shape010")],u"./stator_inlet.ast")
-Mesh.export([doc.getObject("Shape011")],u"./stator_outlet.ast")
-Mesh.export([doc.getObject("Shape012")],u"./stator_side1.ast")
-Mesh.export([doc.getObject("Shape013")],u"./stator_side2.ast")
-Mesh.export([doc.getObject("Shape014")],u"./stator_side3.ast")
-Mesh.export([doc.getObject("Shape015")],u"./stator_side4.ast")
+Mesh.export([doc.getObject("Shape003")],u"geom/foil.ast")
+Mesh.export([doc.getObject("Shape001")],u"geom/tip.ast")
+Mesh.export([doc.getObject("Shape004")],u"geom/rotor_inlet.ast")
+Mesh.export([doc.getObject("Shape005")],u"geom/rotor_outlet.ast")
+Mesh.export([doc.getObject("Shape006")],u"geom/rotor_side1.ast")
+Mesh.export([doc.getObject("Shape007")],u"geom/rotor_side2.ast")
+Mesh.export([doc.getObject("Shape008")],u"geom/rotor_side3.ast")
+Mesh.export([doc.getObject("Shape009")],u"geom/rotor_side4.ast")
+Mesh.export([doc.getObject("Shape010")],u"geom/stator_inlet.ast")
+Mesh.export([doc.getObject("Shape011")],u"geom/stator_outlet.ast")
+Mesh.export([doc.getObject("Shape012")],u"geom/stator_side1.ast")
+Mesh.export([doc.getObject("Shape013")],u"geom/stator_side2.ast")
+Mesh.export([doc.getObject("Shape014")],u"geom/stator_side3.ast")
+Mesh.export([doc.getObject("Shape015")],u"geom/stator_side4.ast")
 
-os.system('sed -i -e "s#solid Mesh#solid foil#g" foil.ast')
-os.system('sed -i -e "s#solid Mesh#solid tip#g" tip.ast')
+os.system('sed -i -e "s#solid Mesh#solid foil#g" geom/foil.ast')
+os.system('sed -i -e "s#solid Mesh#solid tip#g" geom/tip.ast')
 
-os.system('sed -i -e "s#solid Mesh#solid rotor_inlet#g" rotor_inlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid rotor_outlet#g" rotor_outlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid rotor_side1#g" rotor_side1.ast')
-os.system('sed -i -e "s#solid Mesh#solid rotor_side2#g" rotor_side2.ast')
-os.system('sed -i -e "s#solid Mesh#solid rotor_side3#g" rotor_side3.ast')
-os.system('sed -i -e "s#solid Mesh#solid rotor_side4#g" rotor_side4.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_inlet#g" geom/rotor_inlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_outlet#g" geom/rotor_outlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side1#g" geom/rotor_side1.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side2#g" geom/rotor_side2.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side3#g" geom/rotor_side3.ast')
+os.system('sed -i -e "s#solid Mesh#solid rotor_side4#g" geom/rotor_side4.ast')
 
-os.system('sed -i -e "s#solid Mesh#solid stator_inlet#g" stator_inlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid stator_outlet#g" stator_outlet.ast')
-os.system('sed -i -e "s#solid Mesh#solid stator_side1#g" stator_side1.ast')
-os.system('sed -i -e "s#solid Mesh#solid stator_side2#g" stator_side2.ast')
-os.system('sed -i -e "s#solid Mesh#solid stator_side3#g" stator_side3.ast')
-os.system('sed -i -e "s#solid Mesh#solid stator_side4#g" stator_side4.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_inlet#g" geom/stator_inlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_outlet#g" geom/stator_outlet.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side1#g" geom/stator_side1.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side2#g" geom/stator_side2.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side3#g" geom/stator_side3.ast')
+os.system('sed -i -e "s#solid Mesh#solid stator_side4#g" geom/stator_side4.ast')
 
-
-
-
-os.system('cat rotor_inlet.ast rotor_outlet.ast rotor_side1.ast rotor_side2.ast rotor_side3.ast rotor_side4.ast foil.ast tip.ast > rotor.stl')
-os.system('cat stator_inlet.ast stator_outlet.ast stator_side1.ast stator_side2.ast stator_side3.ast stator_side4.ast > stator.stl')
 
 exit()

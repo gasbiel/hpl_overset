@@ -1,5 +1,6 @@
 #!/bin/sh
-cd ${0%/*} || exit 1    # Run from this directory
+
+
 
 #Copying reference cases
 cp -r stator_orig static_domain
@@ -7,6 +8,7 @@ cp -r rotor_orig blade1
 
 #Meshing static domain
 cd static_domain
+export OMP_NUM_THREADS=12
 cartesianMesh #> log.cartesianMesh 2>&1
 createPatch -overwrite #> log.createPatch 2>&1
 #checkMesh > log.checkMesh 2>&1
@@ -14,32 +16,35 @@ cd ..
 
 #Meshing center blade
 cd blade1
-cartesianMesh #> log.cartesianMesh 2>&1
-createPatch -overwrite #> log.createPatch 2>&1
-#checkMesh > log.checkMesh 2>&1
+cartesianMesh > log.cartesianMesh 2>&1
+createPatch -overwrite > log.createPatch 2>&1
+checkMesh > log.checkMesh 2>&1
 cd ..
 
+unset OMP_NUM_THREADS
 #Create left blade
-#cp -r blade1 blade2
-#sed -i 's/overset1/overset2/g' blade2/constant/polyMesh/boundary
+cp -r blade1 blade2
+sed -i 's/overset1/overset2/g' blade2/constant/polyMesh/boundary
 #sed -i 's/blade1/blade2/g' blade2/constant/polyMesh/boundary
-#cd blade2
-#transformPoints -rotate "( (0 0 1) (0 0.866 -0.5) )" > log.rotation2 2>&1
-#cd ..
+cd blade2
+transformPoints -rotate "( (0 0 1) (0 0.866 -0.5) )" > log.rotation2 2>&1
+cd ..
 
 #Create right blade
-#cp -r blade1 blade3
-#sed -i 's/overset1/overset3/g' blade3/constant/polyMesh/boundary
+cp -r blade1 blade3
+sed -i 's/overset1/overset3/g' blade3/constant/polyMesh/boundary
 #sed -i 's/blade1/blade3/g' blade3/constant/polyMesh/boundary
-#cd blade3
-#transformPoints -rotate "( (0 0 1) (0 -0.866 -0.5) )" > log.rotation3 2>&1
-#cd ..
+cd blade3
+transformPoints -rotate "( (0 0 1) (0 -0.866 -0.5) )" > log.rotation3 2>&1
+cd ..
+
+unset OMP_NUM_THREADS
 
 #Merge meshes
 cp -r static_domain full_domain
 mergeMeshes full_domain blade1 -overwrite #> log.merge1 2>&1
-#mergeMeshes full_domain blade2 -overwrite #> log.merge2 2>&1
-#mergeMeshes full_domain blade3 -overwrite #> log.merge3 2>&1
+mergeMeshes full_domain blade2 -overwrite #> log.merge2 2>&1
+mergeMeshes full_domain blade3 -overwrite #> log.merge3 2>&1
 
 #CheckMesh and initialization
 cd full_domain
@@ -52,7 +57,7 @@ cd ..
 #Removing steps
 rm -r static_domain
 rm -r blade1
-#rm -r blade2
-#rm -r blade3
+rm -r blade2
+rm -r blade3
 
 #------------------------------------------------------------------------------

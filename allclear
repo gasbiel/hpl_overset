@@ -1,0 +1,9 @@
+#!/bin/sh
+
+rm -rf stator_orig
+rm -rf rotor_orig
+rm -rf full_domain
+rm -rf geom
+rm -f wtg_FreecadCfmesh.pyc
+
+#------------------------------------------------------------------------------

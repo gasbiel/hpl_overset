@@ -1,25 +1,17 @@
 #!/bin/sh
-cd ${0%/*} || exit 1    # Run from this directory
 
 cd full_domain
 
-#setFields -dict system/setFieldsDict_init > log.setFieldsDict_init 2>&1
-
-decomposePar
-
-#moveDynamicMesh -noFunctionObjects > log.moveDynamicMesh 2>&1
+decomposePar -force
 
 #mpirun -np 4 moveDynamicMesh -parallel > log.moveDynamicMesh 2>&1
 
 #mpirun -np 4 renumberMesh -overwrite -parallel > log.renumberMesh 2>&1
 
-mpirun -np 4 overPimpleDyMFoam -parallel > log.solver 2>&1
-
-#renumberMesh -overwrite > log.renumberMesh 2>&1
-
-#overPimpleDyMFoam > log.solver 2>&1
+mpirun -np 16 overPimpleDyMFoam -parallel > log.solver 2>&1
 
 reconstructPar
 
+rm -rf processor*
 
 #------------------------------------------------------------------------------
